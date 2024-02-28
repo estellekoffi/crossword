@@ -5,6 +5,12 @@
  * 
  */
 module Crossword {
+	
+	requires javafx.controls;
 	requires transitive javafx.graphics;
-	exports estelle.crossword;
+	requires java.sql;
+	requires javafx.fxml;
+	
+	exports estelle.controllers;
+	exports estelle.dbconnections;
 }
