@@ -1,9 +1,4 @@
-/**
- * 
- */
-/**
- * 
- */
+
 module Crossword {
 	
 	requires javafx.controls;
@@ -14,4 +9,6 @@ module Crossword {
 	exports estelle;
 	exports estelle.controllers;
 	exports estelle.dbconnections;
+	
+	opens estelle.controllers to javafx.fxml;
 }
