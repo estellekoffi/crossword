@@ -10,13 +10,13 @@ public class GridController extends Application{
 
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-Parent root = FXMLLoader.load(getClass().getResource("/estelle/views/Grid.fxml"));
+	public void start(Stage stage) throws Exception {
+		Parent root = FXMLLoader.load(getClass().getResource("/estelle/views/Grid.fxml"));
 		
-		
-		Scene scene = new Scene(root);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		Scene scene = new Scene(root, 600, 400);
+		stage.setScene(scene);
+		stage.setTitle("Crossword game - select one");
+		stage.show();
 		
 
 	}
