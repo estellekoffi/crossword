@@ -33,4 +33,9 @@ public class Clue {
 	}
 	
 	public boolean isHorizontal() { return horizontal; }
+	
+	@Override
+	public String toString() {
+		return String.format("%s (%s, %s)", getClue(), getRow(), getColumn());
+	}
 }

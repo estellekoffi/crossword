@@ -12,6 +12,7 @@ public class GridModel {
 		this.name = name;
 		this.height = height;
 		this.width = width;
+		this.cells = new CrosswordSquare[height][width];
 	}
 	
 	public int getId() { return id; }

@@ -22,6 +22,17 @@ public class Database {
 	private Connection conn;
 	private Statement state;
 	
+	private GridModel currentGrid;
+	
+	public void setCurrentGrid(GridModel _current) {
+		this.currentGrid = _current;
+	}
+	
+	public GridModel getCurrentGrid() {
+		return this.currentGrid;
+	}
+	
+	
 	private static Database _instance;
 	
 	private Database() { this.conn = getConnection(); }
@@ -68,8 +79,8 @@ public class Database {
 				retour.add(new GridModel(
 						data.getInt("numero_grille"), 
 						data.getString("nom_grille"), 
-						data.getInt("largeur"), 
-						data.getInt("hauteur"))
+						data.getInt("hauteur"), 
+						data.getInt("largeur"))
 				);
 			}
 		} catch (Exception e) {

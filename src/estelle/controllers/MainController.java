@@ -9,7 +9,10 @@ import java.util.ResourceBundle;
 import estelle.dbconnections.Database;
 import estelle.models.Clue;
 import estelle.models.Crossword;
+import estelle.models.CrosswordSquare;
 import estelle.models.GridModel;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -19,13 +22,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 public class MainController implements Initializable  {
 
@@ -34,82 +42,60 @@ public class MainController implements Initializable  {
     private ScrollPane gridListingScrollPane;
     
     @FXML
+    private StackPane stackPane;
+    
+    @FXML
     private GridPane crosswordGridPane;
     
     @FXML
-    private ListView<?> horizontalClueListView;
+    private final ListView<Clue> horizontalClueListView = new ListView<>();
 
     @FXML
-    private ListView<?> verticalClueListView;
+    private final ListView<Clue> verticalClueListView  = new ListView<>();;
+    
+    @FXML
+    private ScrollPane horizontalClueScrollPane;
+    
+    @FXML
+    private ScrollPane verticalClueScrollPane;
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
         
-        Database db = Database.getInstance();
-
-		List<GridModel> grids = db.getGrids();
-        
-        VBox contentVBox = new VBox();
-		HBox line = new HBox();
-		int i = 0;
-		for(GridModel grid: grids) {
-			Button btn = new Button(grid.getName());
-			btn.setOnAction(new EventHandler<ActionEvent>() {
-				@Override
-				public void handle(ActionEvent event) {
-					try {
-						playCrossword(event, grid);
-					} catch(IOException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			line.getChildren().add(btn);
-			
-			i++;
-			if(i == 3) {
-				contentVBox.getChildren().add(line);
-				line = new HBox();
-				i = 0;
-			}
-		}
-		
-		this.gridListingScrollPane.setContent(contentVBox);
-		
-	}
-	
-	public void playCrossword(ActionEvent event, GridModel grid) throws IOException {
-		
 		Database db = Database.getInstance();
-		
+		GridModel grid = db.getCurrentGrid();
 		
 		// Recuperation du jeu de mot croisé selectionné
 		ResultSet result = db.getCrosswordResultSet(grid);
 		Crossword crossword = new Crossword(grid.getId(), grid.getName(), grid.getHeight(), grid.getWidth());
 		crossword.createPuzzle(result);
-		
+
 		this.crosswordGridPane = new GridPane();
 		for(int i = 0; i < crossword.getWidth(); i++) {
 			for(int j = 0; j < crossword.getHeight(); j++) {
-				crosswordGridPane.add(new TextField(), i, j);
+				TextField tf = new TextField();
+				// tf.setDisable(true);
+		        // tf.setStyle("-fx-control-inner-background: #000000;");
+				crosswordGridPane.add(tf, i, j);
+				
 			}
 		}
 		
-		verticalClueListView = new ListView<>(crossword.getVerticalClues());
-		horizontalClueListView = new ListView<>(crossword.getHorizontalClues());
-		
-		// (Crossword crossword: crosswords) {
-		//	System.out.println(crossword.definition());
-		// }
+		this.verticalClueListView.getItems().addAll(crossword.getVerticalClues());
+		this.horizontalClueListView.getItems().addAll(crossword.getHorizontalClues());
+		this.stackPane.getChildren().add(crosswordGridPane);
+		this.verticalClueScrollPane.setContent(verticalClueListView);
+		this.horizontalClueScrollPane.setContent(horizontalClueListView);
+	}
+	
+	private class TextFieldClickHandler implements EventHandler<MouseEvent> {
 
-		Parent root;
-		root = FXMLLoader.load(getClass().getResource("/estelle/views/Crossword.fxml"));
-		Stage stage = (Stage)((Node) event.getSource()).getScene().getWindow();
-		Scene scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-		
-		
+		@Override
+		public void handle(MouseEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+        
 	}
 
 
