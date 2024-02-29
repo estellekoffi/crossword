@@ -7,11 +7,24 @@ public class CrosswordSquare {
 	
 	private char solution;
 	private StringProperty proposition;
-	private String horizontalClue, verticalClue;
+	private int horizontalClue, verticalClue;
 	private boolean black;
 	
+	public CrosswordSquare() {
+		this.black = true;
+	}
 	
-	public CrosswordSquare() {}
+	public CrosswordSquare(char solution) {
+		this.solution = solution;
+		this.black = false;
+	}
+	
+	public CrosswordSquare(char solution, int horString, int verString) {
+		this.solution = solution;
+		this.horizontalClue = horString;
+		this.verticalClue = verString;
+		this.black = false;
+	}
 	
 	public String getProposition() { return proposition.get(); }
 	public StringProperty propositionProperty() { return proposition; }
@@ -25,19 +38,19 @@ public class CrosswordSquare {
 		this.solution = solution;
 	}
 
-	public String getHorizontalClue() {
+	public int getHorizontalClue() {
 		return horizontalClue;
 	}
 
-	public void setHorizontalClue(String horizontalClue) {
+	public void setHorizontalClue(int horizontalClue) {
 		this.horizontalClue = horizontalClue;
 	}
 
-	public String getVerticalClue() {
+	public int getVerticalClue() {
 		return verticalClue;
 	}
 
-	public void setVerticalClue(String verticalClue) {
+	public void setVerticalClue(int verticalClue) {
 		this.verticalClue = verticalClue;
 	}
 

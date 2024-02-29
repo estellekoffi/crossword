@@ -79,8 +79,8 @@ public class Database {
 				retour.add(new GridModel(
 						data.getInt("numero_grille"), 
 						data.getString("nom_grille"), 
-						data.getInt("largeur"), 
-						data.getInt("hauteur"))
+						data.getInt("hauteur"), 
+						data.getInt("largeur"))
 				);
 			}
 		} catch (Exception e) {

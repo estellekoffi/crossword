@@ -4,40 +4,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:controller="estelle.controllers.MainController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox alignment="CENTER" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-padding: 20;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="estelle.controllers.MainController">
    <children>
-      <SplitPane>
-         <items>
+      <StackPane fx:id="stackPane" prefHeight="683.0" prefWidth="755.0">
+         <children>
             <GridPane fx:id="crosswordGridPane" style="-fx-padding: 5;" />
-         </items>
-      </SplitPane>
-      <VBox alignment="CENTER" disable="true" prefHeight="683.0" prefWidth="576.0">
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER" minHeight="600.0" minWidth="250.0" prefHeight="614.0" prefWidth="250.0">
          <HBox.margin>
             <Insets />
          </HBox.margin>
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" text="INDICES HORIZONTAUX">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <ScrollPane minWidth="-Infinity" prefHeight="350.0" prefWidth="571.0" style="-fx-padding: 5;">
+            <ScrollPane fx:id="horizontalClueScrollPane" blendMode="SRC_ATOP" minHeight="250.0" minWidth="250.0" prefHeight="250.0" prefWidth="250.0" style="-fx-padding: 5;">
                <content>
-                  <ListView fx:id="verticalClueListView" cache="true" editable="true" orientation="HORIZONTAL" prefHeight="48.0" prefWidth="573.0" style="-fx-background-color: gray; -fx-border-color: black;" />
+                  <ListView fx:id="horizontalClueListView" cache="true" maxHeight="250.0" maxWidth="25.0" minHeight="250.0" minWidth="250.0" prefHeight="250.0" prefWidth="250.0" style="-fx-background-color: gray; -fx-border-color: black;" />
                </content>
             </ScrollPane>
             <Label text="INDICES VERTICAUX">
                <font>
-                  <Font size="18.0" />
+                  <Font size="14.0" />
                </font></Label>
-            <ScrollPane prefHeight="384.0" prefWidth="571.0" style="-fx-padding: 5;">
+            <ScrollPane fx:id="verticalClueScrollPane" maxHeight="250.0" minHeight="250.0" minWidth="250.0" prefHeight="250.0" prefWidth="250.0" style="-fx-padding: 5;">
                <content>
-                  <ListView fx:id="horizontalClueListView" editable="true" prefHeight="48.0" prefWidth="574.0" style="-fx-border-color: black; -fx-background-color: gray;" />
+                  <ListView fx:id="verticalClueListView" maxHeight="250.0" maxWidth="250.0" minHeight="250.0" minWidth="250.0" prefHeight="250.0" prefWidth="250.0" style="-fx-border-color: black; -fx-background-color: gray;" />
                </content>
             </ScrollPane>
          </children>

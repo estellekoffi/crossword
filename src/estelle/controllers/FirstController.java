@@ -46,12 +46,13 @@ public class FirstController implements Initializable {
 			});
 			line.getChildren().add(btn);
 			
-			i++;
+			
 			if(i == 3) {
 				contentVBox.getChildren().add(line);
 				line = new HBox();
 				i = 0;
 			}
+			i++;
 		}
 		
 		this.gridListingScrollPane.setContent(contentVBox);
