@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import estelle.dbconnections.Database;
+import estelle.models.CrosswordModel;
 import estelle.models.GridModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -67,6 +68,14 @@ public class MainController implements Initializable  {
 	
 	public void playCrossword(ActionEvent event, long numeroGrille) {
 		
+		Database db = Database.getInstance();
+
+		List<CrosswordModel> crosswords = db.getCrosswords(numeroGrille);
+		
+		
+		for(CrosswordModel crossword: crosswords) {
+			System.out.println(crossword.definition());
+		}
 
 		Parent root;
 		try {
