@@ -11,7 +11,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import estelle.models.CrosswordModel;
+import estelle.models.Clue;
+import estelle.models.Crossword;
+import estelle.models.GridModel;
 import estelle.models.GridModel;
 
 
@@ -64,11 +66,10 @@ public class Database {
 			data = this.state.executeQuery("SELECT * FROM GRID");
 			while(data.next()) {
 				retour.add(new GridModel(
-						data.getLong("numero_grille"), 
+						data.getInt("numero_grille"), 
 						data.getString("nom_grille"), 
-						data.getLong("largeur"), 
-						data.getLong("hauteur"), 
-						data.getString("controle"))
+						data.getInt("largeur"), 
+						data.getInt("hauteur"))
 				);
 			}
 		} catch (Exception e) {
@@ -79,29 +80,15 @@ public class Database {
 		
 	}
 
-	public List<CrosswordModel> getCrosswords(long numeroGrille) {
-		
-		ResultSet data;
-		List<CrosswordModel> retour = new ArrayList();
+	public ResultSet getCrosswordResultSet(GridModel gridModel) {
 		
 		try {
 			createState();
-			data = this.state.executeQuery("SELECT * FROM CROSSWORD WHERE numero_grille = '" + numeroGrille + "'");
-			while(data.next()) {
-				retour.add(new CrosswordModel(
-						data.getLong("numero_mot"), 
-						data.getString("definition"), 
-						data.getInt("horizontal"), 
-						data.getLong("ligne"), 
-						data.getLong("colonne"), 
-						data.getString("solution"),
-						data.getLong("numero_grille")  )
-				);
-			}
+			return this.state.executeQuery("SELECT * FROM CROSSWORD WHERE numero_grille = '" + gridModel.getId() + "'");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		return retour;
+		return null;
 	}
 }
