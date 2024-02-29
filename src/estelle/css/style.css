@@ -7,3 +7,11 @@
 .label {
 	-fx-font-family: Pacifico;
 }
+
+.button {
+	-fx-font: 16px "Avenir Next";
+	-fx-background-color: #E66a6a;
+	-fx-background-radius: 5px;
+	-fx-text-fill: #fff;
+	-fx-padding: 8px;
+}

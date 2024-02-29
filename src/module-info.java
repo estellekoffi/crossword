@@ -9,6 +9,7 @@ module Crossword {
 	exports estelle;
 	exports estelle.controllers;
 	exports estelle.dbconnections;
+	exports estelle.models;
 	
 	opens estelle.controllers to javafx.fxml;
 }
