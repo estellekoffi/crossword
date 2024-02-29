@@ -2,29 +2,20 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox stylesheets="@../css/style.css" alignment="CENTER"
-	prefHeight="134.0" prefWidth="401.0"
-	xmlns="http://javafx.com/javafx/20.0.1"
-	fx:controller="estelle.controllers.MainController"
-	xmlns:fx="http://javafx.com/fxml/1">
-	<children>
-		<Label alignment="CENTER" style="-fx-padding: 10;"
-			text="Choisissez une grille pour commencer le jeu !"
-			textAlignment="CENTER" textFill="#e80d0d">
-			<font>
-				<Font name="Comic Sans MS" size="18.0" />
-			</font>
-		</Label>
-		<ScrollPane fx:id="gridListingScrollPane"
-			prefHeight="200.0" prefWidth="200.0">
-			<content>
-				<AnchorPane minHeight="0.0" minWidth="0.0"
-					prefHeight="200.0" prefWidth="200.0" />
-			</content>
-		</ScrollPane>
-	</children>
-</VBox>
+<StackPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="estelle.controllers.MainController">
+	<VBox alignment="CENTER" prefHeight="134.0" prefWidth="401.0" xmlns="http://javafx.com/javafx/20.0.1">
+	   <children>
+	      <Label alignment="CENTER" style="-fx-padding: 10;" stylesheets="@../css/style.css" text="Choisissez une grille pour commencer le jeu !" textAlignment="CENTER" textFill="#e80d0d">
+	         <font>
+	            <Font name="Comic Sans MS" size="18.0" />
+	         </font>
+	      </Label>
+	      <ScrollPane fx:id="gridListingScrollPane" prefHeight="200.0" prefWidth="200.0" />
+	   </children>
+	</VBox>
+	
+</StackPane>

@@ -24,7 +24,6 @@ public class CrosswordApp extends Application {
 		stage.setTitle("Crossword game - select one");
 		stage.show();
 		
-
 	}
 
 }
