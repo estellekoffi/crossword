@@ -1,39 +1,23 @@
 package estelle.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import estelle.dbconnections.Database;
 import estelle.models.Clue;
 import estelle.models.Crossword;
-import estelle.models.CrosswordSquare;
 import estelle.models.GridModel;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.event.ActionEvent;
+import javafx.beans.property.StringProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import javafx.util.Callback;
 
 public class MainController implements Initializable  {
 
@@ -86,7 +70,12 @@ public class MainController implements Initializable  {
 		this.stackPane.getChildren().add(crosswordGridPane);
 		this.verticalClueScrollPane.setContent(verticalClueListView);
 		this.horizontalClueScrollPane.setContent(horizontalClueListView);
+		
+
 	}
+	
+	
+	
 	
 	private class TextFieldClickHandler implements EventHandler<MouseEvent> {
 

@@ -1,0 +1,158 @@
+	public void createPuzzle(ResultSet data) {
+		try {
+			
+			int horizontal = 0;
+			int vertical = 0;
+			ArrayList<Integer> existingRows = new ArrayList<>();
+			ArrayList<Integer> existingColumns = new ArrayList<>();
+			while(data.next()) {
+				// Creation de l'indice courant
+				Clue x = new Clue(
+						data.getString("definition"), 
+						data.getInt("ligne"), 
+						data.getInt("colonne"), 
+						data.getInt("horizontal")
+				);
+				
+				// Reponse -> horizontal ? reponse correspondant à $ligne : reponse correspondant à $colonne 
+				String answer = data.getString("solution");
+			
+				
+				if(x.isHorizontal()) { // Afficher sur la ligne
+					this.horizontalClues.add(x);
+					for(int i = x.getColumn() - 1; i < x.getColumn() + answer.length() - 2; i++) {
+						// System.out.println(x.getColumn() - 1);
+						// System.out.println(x.getColumn() + answer.length() - 1);
+						// System.out.println(i);
+						// System.out.println("horizontal: " + answer);
+						try {
+							setCell(horizontal, i, new CrosswordSquare('f'));
+						} catch(Exception e) {
+							System.out.println(e.getMessage());
+						}
+					}
+
+					System.out.println("add: " +horizontal);
+					if(!existingRows.contains(horizontal)) {
+						existingRows.add(horizontal);
+						horizontal++;
+					}
+					
+				} else { // afficher sur la colonne
+					this.verticalClues.add(x);
+					for(int j = x.getRow() - 1; j < x.getRow() + answer.length() - 1; j++) {
+						System.out.println("vertical: " + answer);
+						try {
+							setCell(j, vertical, new CrosswordSquare(answer.charAt('f')));
+						} catch(Exception e) {
+							System.out.println(e.getMessage());
+						}
+					}
+					if(!existingColumns.contains(vertical)) {
+						existingRows.add(vertical);
+						vertical++;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < this.verticalClues.size(); i++) {
+			for(int j = 0; j < this.horizontalClues.size(); j++) {
+				// this.setCell(i, j, new CrosswordSquare('A', i, j, false));
+			}
+		}
+		
+		this.horizontalClues.size();
+		
+		
+	}
+
+}
+
+
+
+	
+	public void createPuzzle(ResultSet data) {
+		try {
+			
+			int horizontal = 0;
+			int vertical = 0;
+			ArrayList<Integer> existingRows = new ArrayList<>();
+			ArrayList<Integer> existingColumns = new ArrayList<>();
+			while(data.next()) {
+				// Creation de l'indice courant
+				Clue x = new Clue(
+						data.getString("definition"), 
+						data.getInt("ligne"), 
+						data.getInt("colonne"), 
+						data.getInt("horizontal")
+				);
+				
+				// Reponse -> horizontal ? reponse correspondant à $ligne : reponse correspondant à $colonne 
+				String answer = data.getString("solution");
+				Character[] solution = toCharacterArray(answer);
+			
+				
+				if(x.isHorizontal()) { // Afficher sur la ligne
+					this.horizontalClues.add(x);
+					for(int i = x.getRow() - 1; i < x.getRow() + answer.length() - 2; i++) {
+						// System.out.println(x.getColumn() - 1);
+						// System.out.println(x.getColumn() + answer.length() - 1);
+						// System.out.println(i);
+						// System.out.println("horizontal: " + answer);
+						for(int k = 0; k < solution.length; k++) {
+							try {
+								setCell(i, x.getColumn(), new CrosswordSquare(solution[k]));
+							} catch(Exception e) {
+								System.out.println(e.getMessage());
+							}
+						}
+						
+					}
+
+					System.out.println("add: " +horizontal);
+					if(!existingRows.contains(horizontal)) {
+						existingRows.add(horizontal);
+						horizontal++;
+					}
+					
+				} else { // afficher sur la colonne
+					this.verticalClues.add(x);
+					for(int i = x.getColumn() - 1; i < x.getColumn() + answer.length() - 2; i++) {
+						// System.out.println(x.getColumn() - 1);
+						// System.out.println(x.getColumn() + answer.length() - 1);
+						// System.out.println(i);
+						// System.out.println("horizontal: " + answer);
+						for(int k = 0; k < solution.length; k++) {
+							try {
+								setCell(i, x.getRow(), new CrosswordSquare(solution[k]));
+							} catch(Exception e) {
+								System.out.println(e.getMessage());
+							}
+						}
+						
+					}
+					if(!existingColumns.contains(vertical)) {
+						existingRows.add(vertical);
+						vertical++;
+					}
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		for(int i = 0; i < this.verticalClues.size(); i++) {
+			for(int j = 0; j < this.horizontalClues.size(); j++) {
+				// this.setCell(i, j, new CrosswordSquare('A', i, j, false));
+			}
+		}
+		
+		this.horizontalClues.size();
+		
+		
+	}
+
+}

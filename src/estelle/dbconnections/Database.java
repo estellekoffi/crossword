@@ -45,9 +45,9 @@ public class Database {
 	private Connection getConnection() {
 		Connection conn = null;
 		try {
-			String url = "jdbc:mysql://localhost:3306/crossword";
-			String user = "serber";
-			String password = "password";
+			String url = "jdbc:mysql://localhost:3306/base";
+			String user = "estelle";
+			String password = "estelle";
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(url, user, password);
 			

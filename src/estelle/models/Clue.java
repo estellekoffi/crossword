@@ -4,7 +4,7 @@ public class Clue {
 	
 	private String clue;
 	private int row, column;
-	private boolean horizontal;
+	private boolean horizontal = true;
 	
 	public Clue(String clue, int row, int column, boolean horizontal) {
 		this.clue = clue;

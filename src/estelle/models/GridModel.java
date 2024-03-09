@@ -1,6 +1,6 @@
 package estelle.models;
 
-public class GridModel {
+public class GridModel{
 
 	private int id;
 	private int height, width;
@@ -27,7 +27,7 @@ public class GridModel {
 	}
 	
 	public void setCell(int row, int column, CrosswordSquare cellValue) {
-		cells[row][column] = cellValue;
+		 cells[row][column] = cellValue;
 	}
 	
 }
