@@ -62,7 +62,7 @@ public static Character[] toCharacterArray(String str)
 				
 				if(x.isHorizontal()) { // Afficher sur la ligne
 					this.horizontalClues.add(x);
-					for(int i = x.getColumn(); i < x.getColumn()-1 + answer.length(); i++) {
+					for(int i = x.getColumn(); i < x.getColumn() + answer.length(); i++) {
 						// System.out.println(x.getColumn() - 1);
 						// System.out.println(x.getColumn() + answer.length() - 1);
 						// System.out.println(i);
@@ -125,6 +125,7 @@ public static Character[] toCharacterArray(String str)
 		
 		
 	}
+
 
 }
 

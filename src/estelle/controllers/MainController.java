@@ -57,7 +57,7 @@ public class MainController implements Initializable  {
 		this.crosswordGridPane = new GridPane();
 		for(int i = 0; i < crossword.getWidth(); i++) {
 			for(int j = 0; j < crossword.getHeight(); j++) {
-				TextField tf = new TextField();
+				TextField tf = new TextField();			
 				// tf.setDisable(true);
 		        // tf.setStyle("-fx-control-inner-background: #000000;");
 				crosswordGridPane.add(tf, i, j);
