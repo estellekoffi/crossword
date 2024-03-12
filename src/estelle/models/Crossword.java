@@ -62,47 +62,28 @@ public static Character[] toCharacterArray(String str)
 				
 				if(x.isHorizontal()) { // Afficher sur la ligne
 					this.horizontalClues.add(x);
-					for(int i = x.getColumn(); i < x.getColumn() + answer.length(); i++) {
-						// System.out.println(x.getColumn() - 1);
-						// System.out.println(x.getColumn() + answer.length() - 1);
-						// System.out.println(i);
-						// System.out.println("horizontal: " + answer);
-						int k = i - x.getColumn();							
-						char prop = solution[k];
-							try {
-								setCell(i, x.getColumn(), new CrosswordSquare(prop));
-								System.out.println(prop);
-								
-							} catch(Exception e) {
-								System.out.println(e.getMessage());
-							}
-						
-						
+					int index = 0;
+					for(int i = x.getColumn() - 1; i < x.getColumn() + answer.length() - 1; i++) {
+						try {
+							setCell(x.getRow() - 1, i, new CrosswordSquare(answer.charAt(index++)));
+						} catch(Exception e) {
+							System.out.println("horizontal" + e.getMessage());
+						}
 					}
-
-					/*System.out.println("add: " +horizontal);
 					if(!existingRows.contains(horizontal)) {
 						existingRows.add(horizontal);
 						horizontal++;
-					}*/
+					}
 					
 				} else { // afficher sur la colonne
 					this.verticalClues.add(x);
-					for(int i = x.getRow(); i < x.getRow() + answer.length(); i++) {
-						// System.out.println(x.getColumn() - 1);
-						// System.out.println(x.getColumn() + answer.length() - 1);
-						// System.out.println(i);
-						// System.out.println("horizontal: " + answer);
-						int k = i - x.getRow();
-							char prop = solution[k];
-							try {
-								setCell(i, x.getRow(), new CrosswordSquare(prop));
-								System.out.println(prop);
-							} catch(Exception e) {
-								System.out.println(e.getMessage());
-							}
-						
-						
+					int index = 0;
+					for(int j = x.getRow() - 1; j < x.getRow() + answer.length() - 1; j++) {
+						try {
+							setCell(j, x.getColumn() - 1, new CrosswordSquare(answer.charAt(index++)));
+						} catch(Exception e) {
+							System.out.println("vertical" + e.getMessage());
+						}
 					}
 					/*if(!existingColumns.contains(vertical)) {
 						existingRows.add(vertical);
