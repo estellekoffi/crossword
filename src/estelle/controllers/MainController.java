@@ -73,9 +73,16 @@ public class MainController implements Initializable  {
 		this.crosswordGridPane = new GridPane();
 		for(int i = 0; i < crossword.getWidth(); i++) {
 			for(int j = 0; j < crossword.getHeight(); j++) {
+				
+				String value = null;
 				TextField tf = new TextField();
-				// tf.setDisable(true);
-		        // tf.setStyle("-fx-control-inner-background: #000000;");
+				try {
+					tf.setText( String.valueOf(crossword.getCell(j, i).getSolution()) );
+				} catch(Exception e) {
+					tf.setDisable(true);
+					tf.setStyle("-fx-control-inner-background: #000000;");
+					System.out.println(e.getMessage());
+				}
 				crosswordGridPane.add(tf, i, j);
 				
 			}

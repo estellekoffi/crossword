@@ -44,19 +44,14 @@ public class Crossword extends GridModel {
 				
 				if(x.isHorizontal()) { // Afficher sur la ligne
 					this.horizontalClues.add(x);
-					for(int i = x.getColumn() - 1; i < x.getColumn() + answer.length() - 2; i++) {
-						// System.out.println(x.getColumn() - 1);
-						// System.out.println(x.getColumn() + answer.length() - 1);
-						// System.out.println(i);
-						// System.out.println("horizontal: " + answer);
+					int index = 0;
+					for(int i = x.getColumn() - 1; i < x.getColumn() + answer.length() - 1; i++) {
 						try {
-							setCell(horizontal, i, new CrosswordSquare('f'));
+							setCell(x.getRow() - 1, i, new CrosswordSquare(answer.charAt(index++)));
 						} catch(Exception e) {
-							System.out.println(e.getMessage());
+							System.out.println("horizontal" + e.getMessage());
 						}
 					}
-
-					System.out.println("add: " +horizontal);
 					if(!existingRows.contains(horizontal)) {
 						existingRows.add(horizontal);
 						horizontal++;
@@ -64,12 +59,12 @@ public class Crossword extends GridModel {
 					
 				} else { // afficher sur la colonne
 					this.verticalClues.add(x);
+					int index = 0;
 					for(int j = x.getRow() - 1; j < x.getRow() + answer.length() - 1; j++) {
-						System.out.println("vertical: " + answer);
 						try {
-							setCell(j, vertical, new CrosswordSquare(answer.charAt('f')));
+							setCell(j, x.getColumn() - 1, new CrosswordSquare(answer.charAt(index++)));
 						} catch(Exception e) {
-							System.out.println(e.getMessage());
+							System.out.println("vertical" + e.getMessage());
 						}
 					}
 					if(!existingColumns.contains(vertical)) {
